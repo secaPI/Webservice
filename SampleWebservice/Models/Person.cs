@@ -8,7 +8,7 @@ namespace SimpleRESTServer.Models
     public class Person
     {
 
-        public long  ID { get; set; }
+        public string  ID { get; set; }
 
         public String LastName { get; set; }
 

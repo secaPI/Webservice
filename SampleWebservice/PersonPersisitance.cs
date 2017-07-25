@@ -17,7 +17,7 @@ namespace SimpleRESTServer
         {
 
             string myConnectionString;
-            myConnectionString = "server=127.0.0.1:3306;database=openemr";
+            myConnectionString = "server=127.0.0.1;Port=3306;uid=root;pwd='';database=openemr";
             try
             {
 
@@ -35,21 +35,21 @@ namespace SimpleRESTServer
             }
         }
 
-        public Person getPerson(long ID)
+        public Person getPerson(string ID)
         {
             Person p = new Person();
             MySql.Data.MySqlClient.MySqlDataReader mySQLReader = null;
 
-            String sqlString = "SELECT pubpid AS pid, lname, fname, DOB from openemr.patient_data";
+            String sqlString = "SELECT lname, fname, DOB, sex from openemr.patient_data WHERE pubpid ="+ID;
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
 
             mySQLReader = cmd.ExecuteReader();
             if (mySQLReader.Read())
             {
-                p.ID = mySQLReader.GetInt32(0);
-                p.FirstName = mySQLReader.GetString(1);
-                p.LastName = mySQLReader.GetString(2);
-                p.StartDate = mySQLReader.GetDateTime(3);
+                p.ID = ID;
+                p.FirstName = mySQLReader.GetString(0);
+                p.LastName = mySQLReader.GetString(1);
+                p.StartDate = mySQLReader.GetDateTime(2);
 
                 return p;
                 

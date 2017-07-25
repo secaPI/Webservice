@@ -19,7 +19,7 @@ namespace SimpleRESTServer.Controllers
         }
 
         // GET: api/Person/5
-        public Person Get(long id)
+        public Person Get(string id)
         {
 
             PersonPersistance pp = new PersonPersistance();
